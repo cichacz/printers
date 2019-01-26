@@ -1,10 +1,16 @@
 [
   {
+    "name": "Drukarka lokalna",
+    "description": "Drukowanie przez serwer druku na lokalnym komputerze",
     "inetaddr": "127.0.0.1",
-    "status": 0
+    "status": 0,
+    "inkLevel": 0.67
   },
   {
+    "name": "Drukowanie do PDF",
+    "description": "Drukowanie do pliku",
     "inetaddr": "127.0.0.2",
-    "status": 1
+    "status": 1,
+    "inkLevel": 1
   }
 ]

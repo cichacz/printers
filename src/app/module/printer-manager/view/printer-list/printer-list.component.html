@@ -1,7 +1,45 @@
-<h2>List of installed devices:</h2>
-<ul>
-  <li *ngFor="let item of printers">
-    {{item.inetaddr}}
-    {{item.statusName}}
-  </li>
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <button (click)="openPrinterForm()" mat-raised-button color="primary" class="mb-2">Dodaj drukarkę</button>
+      <table mat-table [dataSource]="printers$" class="mat-elevation-z3">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Nazwa</mat-header-cell>
+          <mat-cell *matCellDef="let printer"> {{printer.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let printer"> {{printer.statusName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="inetaddr">
+          <mat-header-cell *matHeaderCellDef>Adres sieciowy</mat-header-cell>
+          <mat-cell *matCellDef="let printer"> {{printer.inetaddr}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>Opis</mat-header-cell>
+          <mat-cell *matCellDef="let printer"> {{printer.description}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="queueLength">
+          <mat-header-cell *matHeaderCellDef>Ilość zadań w kolejce</mat-header-cell>
+          <mat-cell *matCellDef="let printer"> {{printer.queueLength}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="inkLevel">
+          <mat-header-cell *matHeaderCellDef>Poziom tuszu</mat-header-cell>
+          <mat-cell *matCellDef="let printer">
+            <mat-progress-bar mode="determinate" [value]="printer.inkLevelPercentage"></mat-progress-bar>
+            &nbsp;{{printer.inkLevelPercentage}}%
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </table>
+
+    </div>
+  </div>
+</div>

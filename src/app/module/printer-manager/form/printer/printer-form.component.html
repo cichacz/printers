@@ -1,3 +1,23 @@
-<p>
-  printer works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form #printerForm="ngForm" novalidate class="my-3 clearfix" (ngSubmit)="printerForm.valid && save()">
+        <h2>Dodawanie nowej drukarki</h2>
+        <mat-form-field>
+          <input matInput placeholder="Nazwa" name="name" [(ngModel)]="printer.name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Adres sieciowy" name="inetaddr" [(ngModel)]="printer.inetaddr" required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Opis" name="description" [(ngModel)]="printer.description"></textarea>
+        </mat-form-field>
+
+        <div class="float-right">
+          <button type="button" mat-button class="mr-2" (click)="cancel()">Anuluj</button>
+          <button type="submit" mat-raised-button color="primary">Dodaj</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

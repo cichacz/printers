@@ -1,43 +1,32 @@
 import {PrinterStatus} from '@app/module/printer-manager/enum/printer-status.enum';
 
 export class Printer {
-  private _name: string;
-  private _status: PrinterStatus;
-  private _inetaddr: string;
-  private _description: string;
+  public name: string;
+  public description: string;
+  public status: PrinterStatus;
+  public inetaddr: string;
+
   private _inkLevel: number;
-  private _queueLength: number = 0;
+  private _queueLength = 0;
 
   constructor(data: any = {}) {
-    // map JSOn to the class props, safe check for private props
+    // map JSOn to the class props
     Object.assign(this, Object.keys(data).reduce((mapped, key) => {
       let mappedKey = key;
-      if (!this.hasOwnProperty(key)) {
+
+      const propDescriptor = Object.getOwnPropertyDescriptor(Printer.prototype, key);
+      // allow for assigning private props
+      if (propDescriptor && !propDescriptor.writable && !propDescriptor.set) {
         mappedKey = '_' + mappedKey;
       }
+
       mapped[mappedKey] = data[key];
       return mapped;
     }, {}));
   }
 
-  get name(): string {
-    return this._name;
-  }
-
-  get status(): PrinterStatus {
-    return this._status;
-  }
-
   get statusName(): string {
     return PrinterStatus[this.status];
-  }
-
-  get inetaddr(): string {
-    return this._inetaddr;
-  }
-
-  get description(): string {
-    return this._description;
   }
 
   get queueLength(): number {
@@ -45,6 +34,14 @@ export class Printer {
   }
 
   get inkLevel(): number {
-    return this._inkLevel;
+    return this._inkLevel || 0;
+  }
+
+  set inkLevel(level: number) {
+    this._inkLevel = Math.max(0, Math.min(1, level));
+  }
+
+  get inkLevelPercentage(): number {
+    return this.inkLevel * 100;
   }
 }

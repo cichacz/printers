@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {PrintersService} from '@app/module/printer-manager/service/printers.service';
-import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {Printer} from '@app/module/printer-manager/model/printer';
+import {MatBottomSheet} from '@angular/material';
+import {PrinterFormComponent} from '@app/module/printer-manager/form/printer/printer-form.component';
+import {filter, take} from 'rxjs/operators';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-printer-list',
@@ -11,13 +13,21 @@ import {Printer} from '@app/module/printer-manager/model/printer';
 })
 export class PrinterListComponent implements OnInit {
 
-  printers: Printer[];
+  printers$: BehaviorSubject<Printer[]> = new BehaviorSubject([]);
+  displayedColumns: string[] = ['name', 'status', 'inetaddr', 'description', 'queueLength', 'inkLevel'];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
-    this.printers = this.route.snapshot.data.printers;
-    console.log(this.printers);
+    this.printers$.next(this.route.snapshot.data.printers);
   }
 
+  openPrinterForm(): void {
+    this.bottomSheet.open(PrinterFormComponent, {disableClose: true})
+    .afterDismissed()
+    .pipe(filter(newPrinter => !!newPrinter), take(1))
+    .subscribe(newPrinter => {
+      this.printers$.next(this.printers$.getValue().concat([newPrinter]));
+    });
+  }
 }

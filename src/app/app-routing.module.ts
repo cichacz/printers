@@ -3,14 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'printers',
+    path: '',
     loadChildren: './module/printer-manager/printer-manager.module#PrinterManagerModule'
   },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
