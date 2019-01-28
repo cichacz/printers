@@ -14,7 +14,7 @@ import {BehaviorSubject} from 'rxjs';
 export class PrinterListComponent implements OnInit {
 
   printers$: BehaviorSubject<Printer[]> = new BehaviorSubject([]);
-  displayedColumns: string[] = ['name', 'status', 'inetaddr', 'description', 'queueLength', 'inkLevel'];
+  displayedColumns: string[] = ['name', 'status', 'inetaddr', 'queueLength', 'inkLevel', 'actions'];
 
   constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
@@ -22,12 +22,19 @@ export class PrinterListComponent implements OnInit {
     this.printers$.next(this.route.snapshot.data.printers);
   }
 
-  openPrinterForm(): void {
-    this.bottomSheet.open(PrinterFormComponent, {disableClose: true})
+  openPrinterForm(printerData?: Printer) {
+    this.bottomSheet.open(PrinterFormComponent, {disableClose: true, data: new Printer(printerData)})
     .afterDismissed()
     .pipe(filter(newPrinter => !!newPrinter), take(1))
     .subscribe(newPrinter => {
-      this.printers$.next(this.printers$.getValue().concat([newPrinter]));
+      let printers = this.printers$.getValue();
+      if(printerData) {
+        const printerIndex = printers.indexOf(printerData);
+        printers.splice(printerIndex, 1, newPrinter);
+      } else {
+        printers = printers.concat([newPrinter]);
+      }
+      this.printers$.next(printers);
     });
   }
 }

@@ -47,6 +47,7 @@
     "sweetalert2": "^8.0.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "webfontloader": "^1.6.28"
   }
 }

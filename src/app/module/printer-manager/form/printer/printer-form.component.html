@@ -15,9 +15,12 @@
 
         <div class="float-right">
           <button type="button" mat-button class="mr-2" (click)="cancel()">Anuluj</button>
-          <button type="submit" mat-raised-button color="primary">Dodaj</button>
+          <button type="submit" mat-raised-button color="primary">
+              <ng-container *ngIf="data; else newItem">Zapisz zmiany</ng-container>
+          </button>
         </div>
       </form>
     </div>
   </div>
 </div>
+<ng-template #newItem>Dodaj</ng-template>

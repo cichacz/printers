@@ -8,6 +8,8 @@
 
 body {
   background: #fafafa;
-  display: block;
-  padding: 2em;
+}
+
+button:focus {
+  outline: none; // we don't want this from bootstrap
 }
