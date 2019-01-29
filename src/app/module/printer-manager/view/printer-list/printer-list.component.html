@@ -28,7 +28,7 @@
         <ng-container matColumnDef="inkLevel">
           <mat-header-cell *matHeaderCellDef>Poziom tuszu</mat-header-cell>
           <mat-cell *matCellDef="let printer">
-            <mat-progress-bar mode="determinate" [value]="printer.inkLevelPercentage"></mat-progress-bar>
+            <mat-progress-bar class="d-none d-md-inline-block" mode="determinate" [value]="printer.inkLevelPercentage"></mat-progress-bar>
             &nbsp;{{printer.inkLevelPercentage}}%
           </mat-cell>
         </ng-container>
