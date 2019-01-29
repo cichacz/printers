@@ -14,9 +14,10 @@ import {
   MatTableModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import { InetaddrDirective } from './validator/inetaddr.directive';
 
 @NgModule({
-  declarations: [PrinterListComponent, PrinterFormComponent],
+  declarations: [PrinterListComponent, PrinterFormComponent, InetaddrDirective],
   imports: [
     CommonModule,
     FormsModule,
