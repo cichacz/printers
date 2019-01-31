@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatIconModule,
   MatInputModule, MatMenuModule,
-  MatProgressBarModule,
+  MatProgressBarModule, MatSortModule,
   MatTableModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
@@ -29,7 +29,8 @@ import { InetaddrDirective } from './validator/inetaddr.directive';
     MatInputModule,
     MatBottomSheetModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSortModule
   ],
   providers: [
     PrintersService

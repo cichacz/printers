@@ -1,26 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Printer} from '@app/module/printer-manager/model/printer';
-import {MatBottomSheet} from '@angular/material';
+import {MatBottomSheet, MatSort, MatTableDataSource} from '@angular/material';
 import {PrinterFormComponent} from '@app/module/printer-manager/form/printer/printer-form.component';
-import {filter, take} from 'rxjs/operators';
-import {BehaviorSubject} from 'rxjs';
+import {filter, take, takeUntil} from 'rxjs/operators';
+import {BehaviorSubject, Subject} from 'rxjs';
 import Swal from 'sweetalert2';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-printer-list',
   templateUrl: './printer-list.component.html',
   styleUrls: ['./printer-list.component.scss']
 })
-export class PrinterListComponent implements OnInit {
+export class PrinterListComponent implements OnInit, OnDestroy {
 
   printers$: BehaviorSubject<Printer[]> = new BehaviorSubject([]);
   displayedColumns: string[] = ['name', 'status', 'inetaddr', 'queueLength', 'inkLevel', 'actions'];
+  dataSource = new MatTableDataSource<Printer>();
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  private _unsibscribe$: Subject<void> = new Subject();
 
   constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.printers$.next(this.route.snapshot.data.printers);
+    this.dataSource.sort = this.sort;
+
+    this.printers$.pipe(takeUntil(this._unsibscribe$)).subscribe(printers => {
+      this.dataSource.data = printers;
+    });
+  }
+
+  ngOnDestroy() {
+    this._unsibscribe$.next();
+    this._unsibscribe$.complete();
   }
 
   openPrinterForm(printerData?: Printer) {
@@ -64,10 +80,8 @@ export class PrinterListComponent implements OnInit {
     });
   }
 
-  downloadReport(data: Printer) {
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-    const url = window.URL.createObjectURL(blob);
-    window.open(url);
-    console.log(url);
+  downloadReport(printer: Printer) {
+    const blob = new Blob([printer.log], { type: 'text/csv' });
+    saveAs(blob, printer.name + '.csv');
   }
 }

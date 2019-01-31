@@ -2,9 +2,15 @@
   <div class="row">
     <div class="col">
       <button (click)="openPrinterForm()" mat-raised-button color="primary" class="mb-2">Dodaj drukarkę</button>
-      <table mat-table [dataSource]="printers$" class="mat-elevation-z3" multiTemplateDataRows>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z3"
+             multiTemplateDataRows
+             matSort
+             matSortActive="name"
+             matSortDisableClear
+             matSortDirection="desc"
+      >
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Nazwa</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</mat-header-cell>
           <mat-cell *matCellDef="let printer">
             {{printer.name}}
           </mat-cell>

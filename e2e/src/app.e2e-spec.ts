@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import {browser, by, element, logging} from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -8,9 +8,14 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to printers!');
+  it('should add printer', async () => {
+    await page.navigateTo();
+
+    page.getAddButton().click();
+
+    // element(by.model('printer.name')).sendKeys('e2e test printer');
+    // element(by.model('printer.inetaddr')).sendKeys('255.255.255.0');
+    // element(by.buttonText('Dodaj')).click();
   });
 
   afterEach(async () => {

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {Printer} from '@app/module/printer-manager/model/printer';
 import {ActivatedRoute} from '@angular/router';
@@ -27,6 +26,7 @@ export class PrinterFormComponent implements OnInit {
   }
 
   save() {
+    console.log(this.data);
     if(!this.data) {
       // new item
       const statusCount = Object.keys(PrinterStatus).length / 2;

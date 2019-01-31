@@ -14,7 +14,11 @@ export class PrintersService implements Resolve<Printer[]> {
   getPrinters() {
     return this.http.get<Printer[]>(environment.printersFile).pipe(
       map(list => {
-        return list.map(item => new Printer(item));
+        return list.map(item => {
+          const printer = new Printer(item);
+          printer.enableLogging();
+          return printer;
+        });
       })
     );
   }

@@ -1,4 +1,6 @@
 import {PrinterStatus} from '@app/module/printer-manager/enum/printer-status.enum';
+import {Moment} from 'moment';
+import * as moment from 'moment';
 
 export class Printer {
   public name: string;
@@ -8,6 +10,7 @@ export class Printer {
 
   private _inkLevel: number;
   private _queueLength = 0;
+  private _log: [Moment, string][] = [];
 
   constructor(data: any = {}) {
     // map JSOn to the class props
@@ -23,6 +26,12 @@ export class Printer {
       mapped[mappedKey] = data[key];
       return mapped;
     }, {}));
+  }
+
+  get log(): string {
+    return this._log.reduce((logString, logEntry) => {
+      return logString + logEntry[0].format('YYYY-MM-DD HH:mm:ss') + ';' + logEntry[1] + '\n';
+    }, 'Czas;Status\n');
   }
 
   get statusName(): string {
@@ -43,5 +52,16 @@ export class Printer {
 
   get inkLevelPercentage(): number {
     return this.inkLevel * 100;
+  }
+
+  public enableLogging() {
+    this._queueLogging();
+  }
+
+  private _queueLogging() {
+    this._log.push([moment(), this.statusName]);
+    setTimeout(() => {
+      this._queueLogging();
+    }, 1000);
   }
 }
