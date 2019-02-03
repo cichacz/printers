@@ -1,6 +1,6 @@
 export enum PrinterStatus {
   OFFLINE,
-  READY,
-  BUSY,
   ERROR,
+  BUSY,
+  READY,
 }

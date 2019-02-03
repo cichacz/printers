@@ -10,7 +10,7 @@
     "name": "Drukowanie do PDF",
     "description": "Drukowanie do pliku",
     "inetaddr": "127.0.0.2",
-    "status": 1,
+    "status": 3,
     "inkLevel": 1
   }
 ]

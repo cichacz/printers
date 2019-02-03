@@ -93,4 +93,18 @@ export class PrinterListComponent implements OnInit, OnDestroy {
     const blob = new Blob([printer.log], { type: 'text/csv' });
     saveAs(blob, printer.name + '.csv');
   }
+
+  getPrinterStatusClass(printer: Printer) {
+    switch(printer.status) {
+      case 0:
+      case 1:
+        return 'badge-danger';
+      case 2:
+        return 'badge-warning';
+      case 3:
+        return 'badge-success';
+      default:
+        return '';
+    }
+  }
 }

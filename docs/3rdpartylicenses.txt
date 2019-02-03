@@ -458,6 +458,9 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 
 
+@angular/service-worker
+MIT
+
 zone.js
 MIT
 The MIT License
@@ -610,6 +613,11 @@ THE SOFTWARE.
 
 @angular/material/table
 
+@angular/material/form-field
+
+@angular/forms
+MIT
+
 sweetalert2
 MIT
 The MIT License (MIT)
@@ -635,10 +643,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-
-@angular/forms
-MIT
-
-@angular/material/form-field
 
 @angular/material/bottom-sheet
