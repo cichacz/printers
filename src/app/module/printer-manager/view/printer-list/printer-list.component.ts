@@ -26,6 +26,7 @@ export class PrinterListComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
+    this.dataSource.filterPredicate = this.filterPredicate;
     this.printers$.next(this.route.snapshot.data.printers);
     this.dataSource.sort = this.sort;
 
@@ -37,6 +38,14 @@ export class PrinterListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._unsibscribe$.next();
     this._unsibscribe$.complete();
+  }
+
+  filterPredicate(data: Printer, filterString: string) {
+    return data.name.toLocaleLowerCase().indexOf(filterString.toLocaleLowerCase()) >= 0;
+  }
+
+  printerFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   openPrinterForm(printerData?: Printer) {
