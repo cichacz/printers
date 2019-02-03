@@ -7,12 +7,12 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/printers/4.fe6e4919865b2e900d2e.js",
+        "/printers/4.c92af62d5f0d0c6558bd.js",
         "/printers/favicon.ico",
         "/printers/index.html",
         "/printers/main.7a4245fae5c5c1e0645d.js",
         "/printers/polyfills.f5ce8ecea387adbb1689.js",
-        "/printers/runtime.63b12cac9b2f3298308a.js",
+        "/printers/runtime.971c7791cad80cdccba5.js",
         "/printers/styles.e76a8776cabe06c4f949.css"
       ],
       "patterns": []
@@ -37,7 +37,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/printers/4.fe6e4919865b2e900d2e.js": "a8f6985cb47f8c7a498a34aad9a97f5529b8ce69",
+    "/printers/4.c92af62d5f0d0c6558bd.js": "ae628d0a7cb144a616f6e0f3d8e090dc634da3b5",
     "/printers/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/printers/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "/printers/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -48,10 +48,10 @@
     "/printers/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/printers/assets/printers.json": "16cf247225d42ae12be6f588f92b4c93c0f249ff",
     "/printers/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/printers/index.html": "14a7d0db4c2a6b07887e14392be4600b8e746d8f",
+    "/printers/index.html": "3084cddbac6cdc8fcc765c712d8ddac00c0ec4f2",
     "/printers/main.7a4245fae5c5c1e0645d.js": "e826c8b1faf8f5ca6f67da5664fe6c87680b6710",
     "/printers/polyfills.f5ce8ecea387adbb1689.js": "6946e10a03311677a01490b8e91741668e64e17e",
-    "/printers/runtime.63b12cac9b2f3298308a.js": "7282a240558214093e4110b94aab9ca045789580",
+    "/printers/runtime.971c7791cad80cdccba5.js": "b936e36a1938c723a89394f7e8ed170524793609",
     "/printers/styles.e76a8776cabe06c4f949.css": "486833c851ce5d87b590c09a6eeddd7049a08435"
   },
   "navigationUrls": [

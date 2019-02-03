@@ -72,7 +72,7 @@
 
         <ng-container matColumnDef="expandedDetail">
           <mat-cell *matCellDef="let printer" class="pt-0">
-            <span class="d-inline-block d-md-none mr-3 badge" [ngClass]="getPrinterStatusClass(printer)">{{printer.statusName}}</span>
+            <span class="d-inline-block d-sm-none mr-3 badge" [ngClass]="getPrinterStatusClass(printer)">{{printer.statusName}}</span>
             <small class="text-muted">
               {{printer.description}}
             </small>
